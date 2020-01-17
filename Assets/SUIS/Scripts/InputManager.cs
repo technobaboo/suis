@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class InputManager : MonoBehavior
+public class InputManager : MonoBehaviour
 {
   // Start is called before the first frame update
   void Start() {}
