@@ -25,5 +25,4 @@ namespace SUIS {
             return outsideDistance + insideDistance;
         }
     }
-
 }

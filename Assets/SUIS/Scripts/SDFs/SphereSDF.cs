@@ -10,5 +10,4 @@ namespace SUIS {
             return transformPoint(point, transform).magnitude - radius;
         }
     }
-
 }
