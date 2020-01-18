@@ -2,27 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeadTransformer : MonoBehaviour
+namespace SUIS
 {
+    [RequireComponent(typeof(Rigidbody))]
+    public class HeadTransformer : MonoBehaviour
+    {
 
-  Camera m_MainCamera;
-  ActionType actionType;
+        private Camera mainCamera;
+        private Vector3 startForward;
+        private Vector3 startEulerAngles;
+        private Vector3 startScale;
 
-  void Start()
-  {
-    m_MainCamera = Camera.main;
-    m_MainCamera.enabled = true;
-  }
+        void Start(){
+            mainCamera = Camera.main;
+            startForward = mainCamera.transform.forward;
+            startEulerAngles = mainCamera.transform.eulerAngles;
+            startScale = transform.lossyScale;
+        }
 
-  void Update()
-  {
-    handleAction(actionType);
-  }
-
-  private void handleAction(ActionType actionType)
-  {
-    if (actionType == ActionType.Scale) {
-      ActionTrigger.scaleByVelocity();
+        void FixedUpdate() {
+            float scale = (transform.eulerAngles.x - startEulerAngles.x)/90;
+            transform.localScale = new Vector3(scale, scale, scale);
+        }
     }
-  }
 }

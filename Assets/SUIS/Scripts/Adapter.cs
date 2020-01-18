@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Adapter : MonoBehaviour {
+namespace SUIS {
+    public class Adapter : MonoBehaviour {
+        private Camera camera;
+        public InputType inputType;
+        public ActionType actionType;
 
-  public InputType inputType;
-  public ActionType actionType;
+        void Start() {
+            camera = Camera.main;
+        }
 
-  void Start() {
-    m_MainCamera = Camera.main;
-    m_MainCamera.enabled = true;
-  }
-
-  void Update() {
-    if (inputType == InputType.Head)
-    {
-      HeadTransformer.handleAction(actionType);
+        void Update() {
+            if (inputType == InputType.Head) {
+                //HeadTransformer.handleAction(actionType);
+            }
+        }
     }
-  }
 }
