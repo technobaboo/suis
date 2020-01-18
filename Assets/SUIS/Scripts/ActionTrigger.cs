@@ -2,15 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ActionTrigger : MonoBehaviour {
-  public static ActionType actionType;
-  public event ActionTriggerEvent Ev;
+public class ActionTrigger : MonoBehaviour
+{
 
-  void Startup () {
-    //
+  public void scaleByVelocity(Vector3 velocity)
+  {
+    transform.localScale += velocity;
   }
 
-  bool isPerformingAction() {
-    return true;
+  public void translateByVelocity(Vector3 velocity)
+  {
+    transform.Translate(
+      velocity.x,
+      velocity.y,
+      velocity.z
+    );
   }
 }

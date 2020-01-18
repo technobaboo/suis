@@ -4,10 +4,18 @@ using UnityEngine;
 
 namespace SUIS {
 
-    public enum ActionType {
-        Hand,
+    public enum InputType {
         Controller,
+        Hand,
+        Head,
         Pointer
+    }
+
+    public enum ActionType
+    {
+        Scale,
+        Translate,
+
     }
 
     public enum ControllerFeatures {
