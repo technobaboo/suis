@@ -1,4 +1,6 @@
-// Detect an action on the object
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public abstract class ActionTrigger : MonoBehaviour {
   public static ActionType actionType;
@@ -8,7 +10,7 @@ public abstract class ActionTrigger : MonoBehaviour {
     //
   }
 
-  pure isPerformingAction() {
+  bool isPerformingAction() {
     return true;
   }
 }
