@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace SUIS {
 
-    enum ActionType {
+    public enum ActionType {
         Hand,
         Controller,
         Pointer
     }
 
-    enum ControllerFeatures {
+    public enum ControllerFeatures {
         ActionButtons,
         Joystick,
         Trackpad,
@@ -22,7 +22,7 @@ namespace SUIS {
         DigitalGrip
     }
 
-    enum DigitalControllerButtons {
+    public enum DigitalControllerButtons {
         A,
         B,
         X,
