@@ -782,7 +782,7 @@ MonoBehaviour:
   debugText: {fileID: 0}
   mainCamera: {fileID: 406792153}
   rigidbody: {fileID: 564376576}
-  initialAngle: 0
+  currentAngle: 0
   flickForce: 50
 --- !u!54 &564376576
 Rigidbody:
@@ -862,7 +862,7 @@ TextMesh:
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4278255608
 --- !u!23 &938157566
 MeshRenderer:
   m_ObjectHideFlags: 0
