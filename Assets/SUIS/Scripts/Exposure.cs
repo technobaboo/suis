@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Exposure : MonoBehaviour
-{
+public class Exposure : MonoBehaviour {
     public Transform pointer;
     public float stepSize = 0.01f;
     public int maxSteps = 100;
