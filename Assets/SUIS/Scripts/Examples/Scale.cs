@@ -2,32 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Scale : MonoBehaviour
-{
-    public TextMesh dataText;
-    Vector3 initialHeadVector;
+public class Scale : MonoBehaviour {
+    public TextMesh debugText;
+    public Transform mainCamera;
+    public Vector3 initialHeadVector;
 
-    void Start() {
-        initialHeadVector = Camera.main.transform.forward;
+    public void PerformActionStart() {
+        initialHeadVector = mainCamera.forward;
     }
-
-    void Update() {
-        // TODO: Replace key press with stare to reset the initial vector
+    public void PerformAction() {
         if (Input.GetKeyDown(KeyCode.R)) {
-            initialHeadVector = Camera.main.transform.forward;
+            initialHeadVector = mainCamera.forward;
         } else {
-            Vector3 currentHeadVector = Camera.main.transform.forward;
+            Vector3 currentHeadVector = mainCamera.forward;
             var cross = Vector3.Cross(initialHeadVector, currentHeadVector);
             var currentAngle = Vector3.Angle(initialHeadVector, currentHeadVector);
             float scale = currentAngle / 30;
 
             if (cross.y < -0.5) {
-                dataText.text = string.Format("DEBUG: Mostly Left| Angle = {0}", currentAngle);
+                string logMessage = string.Format("DEBUG: Mostly Left| Angle = {0}", currentAngle);
+                SetLog(logMessage);
             } else if (cross.y > 0.5) {
-                dataText.text = string.Format("DEBUG: Mostly Right| Angle = {0}", currentAngle);
+                string logMessage = string.Format("DEBUG: Mostly Right| Angle = {0}", currentAngle);
+                SetLog(logMessage);
             }
-
             transform.localScale = new Vector3(scale, scale, scale);
+        }
+    }
+
+    private void SetLog(string logMessage) {
+        if (debugText != null) {
+            debugText.text = logMessage;
+        } else {
+            Debug.Log(logMessage);
         }
     }
 }
