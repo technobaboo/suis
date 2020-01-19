@@ -16,7 +16,6 @@ namespace SUIS {
         Flick,
         Scale,
         Translate
-
     }
 
     public enum ControllerFeatures {

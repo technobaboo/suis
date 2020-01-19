@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace SUIS {
+    /// <summary>Class <c>Manager</c> determines which interactable
+    /// should be used at any given frame based on "staring".</summary>
+    ///
     public class Manager : MonoBehaviour {
-        public InputType inputType;
-        public ActionType actionType;
         void Start() {
-            // Start is called before the first frame update
         }
         void Update() {
-            // Update is called once per frame
         }
     }
 }
