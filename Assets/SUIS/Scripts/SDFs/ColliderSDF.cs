@@ -10,13 +10,15 @@ namespace SUIS {
             point = transformPoint(point, transform);
 
             if(collider is SphereCollider) {
-                SphereSDF sphere = new SphereSDF();
+                SphereSDF sphere = GetComponent<SphereSDF>();
+                if (sphere == null) gameObject.AddComponent<SphereSDF>();
                 sphere.radius = (collider as SphereCollider).radius;
                 return sphere.distance(point);
             }
 
             if(collider is BoxCollider) {
-                BoxSDF box = new BoxSDF();
+                BoxSDF box = GetComponent<BoxSDF>();
+                if(box == null) gameObject.AddComponent<BoxSDF>();
                 box.center = (collider as BoxCollider).center;
                 box.size = (collider as BoxCollider).size;
                 return box.distance(point);

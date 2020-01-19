@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CameraExposure : MonoBehaviour
+public class Exposure : MonoBehaviour
 {
     public Transform pointer;
     public float stepSize = 0.01f;
@@ -16,7 +16,11 @@ public class CameraExposure : MonoBehaviour
     public Material material;
     public Color startColor;
     public Color endColor;
-    public UnityEvent OnSelected;
+    public UnityEvent OnExposedStart;
+    public UnityEvent OnExposed;
+    public UnityEvent OnExposedEnd;
+    public bool isExposed = false;
+    private bool wasExposed = false;
 
     private void Update() {
         float minDist = Mathf.Infinity;
@@ -33,10 +37,20 @@ public class CameraExposure : MonoBehaviour
         exposure += adjustedDist * exposureSpeed * Time.deltaTime;
         exposure = Mathf.Clamp(exposure, 0, activationExposure);
 
-        if(exposure == activationExposure) {
-            OnSelected.Invoke();
+        isExposed = exposure == activationExposure;
+
+        if(isExposed != wasExposed) {
+            if(wasExposed)
+                OnExposedEnd.Invoke();
+            else
+                OnExposedStart.Invoke();
         }
 
+        if(isExposed) {
+            OnExposed.Invoke();
+        }
+
+        wasExposed = isExposed;
         material.color = Color.Lerp(startColor, endColor, exposure / activationExposure);
     }
 
