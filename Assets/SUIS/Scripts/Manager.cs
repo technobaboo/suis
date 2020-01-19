@@ -17,11 +17,11 @@ namespace SUIS {
         public float lockTime = 5.0f;
         public float runningTime = 0f;
         void Start() {
-            Vector3 mainCameraTransform = mainCamera;
+            Vector3 startCameraPosition = mainCamera.position;
         }
 
         void Update() {
-            var hit = RaycastHit;
+            RaycastHit hit;
 
             if (currentSelection != null) {
 
@@ -29,9 +29,9 @@ namespace SUIS {
 
             if(
                 Physics.Raycast(
-                    mainCameraTransform.position,
-                    mainCameraTransform.forward,
-                    hit,
+                    mainCamera.position,
+                    mainCamera.forward,
+                    out hit,
                     500
                 ) == true
             ) {

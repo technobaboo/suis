@@ -11,110 +11,90 @@ namespace SUIS {
         public InputType inputType;
         // public FallbackType fallback;
 
-        private Transform mainCamera;
-        private Transform initialHeadVector;
+        public Transform mainCamera;
+        public Vector3 initialHeadVector;
 
-        private TextMesh debugText;
-
-        Dictionary<InputType, Action> FlickMap = new Dictionary<InputType, Action>() {
-            { InputType.Controller, () => FlickByController() },
-            { InputType.Hand, () => FlickByHand() },
-            { InputType.NonSpatial, () => FlickByNonSpatial() },
-            { InputType.Pointer, () => FlickByPointer() }
-        };
-
-        Dictionary<InputType, Action> ScaleMap = new Dictionary<InputType, Action>() {
-            { InputType.Controller, () => ScaleByController() },
-            { InputType.Hand, () => ScaleByHand() },
-            { InputType.NonSpatial, () => ScaleByNonSpatial() },
-            { InputType.Pointer, () => ScaleByPointer() }
-        };
-
-        Dictionary<InputType, Action> TranslateMap = new Dictionary<InputType, Action>() {
-            { InputType.Controller, () => TranslateByController() },
-            { InputType.Hand, () => TranslateByHand() },
-            { InputType.NonSpatial, () => TranslateByNonSpatial() },
-            { InputType.Pointer, () => TranslateByPointer() }
-        };
+        public TextMesh debugText;
+        
 
         void Start() {
             Vector3 initialHeadVector = mainCamera.forward;
         }
-        void Update() {
-            if (actionType == ActionType.Flick) {
-                // TODO: Check if input type is available
-                // if not, use the fallback
-                FlickMap[inputType]();
-            } else if (actionType == ActionType.Scale) {
-                ScaleMap[inputType]();
-            } else if (actionType == ActionType.Translate) {
-                TranslateMap[inputType]();
-            }
-        }
+        //void Update() {
+        //    if (actionType == ActionType.Flick) {
+        //        // TODO: Check if input type is available
+        //        // if not, use the fallback
+        //        FlickMap[inputType]();
+        //    } else if (actionType == ActionType.Scale) {
+        //        ScaleMap[inputType]();
+        //    } else if (actionType == ActionType.Translate) {
+        //        TranslateMap[inputType]();
+        //    }
+        //}
 
-        static void FlickByController() {
+        static void FlickByController(Interactable interact) {
             //
         }
-        static void FlickByHand() {
+        static void FlickByHand(Interactable interact) {
             
         }
-        static void FlickByNonSpatial() {
+        static void FlickByNonSpatial(Interactable interact) {
             //
         }
-        static void FlickByPointer() {
-            Flick(mainCamera);
+        static void FlickByPointer(Interactable interact) {
+            Flick(interact);
         }
 
-        static void Flick(Transform inputTransform) {
-            RigidBody rigidGameObject = gameObject.AddComponent<RigidBody>();
+        static void Flick(Interactable interact) {
+            Rigidbody rigidGameObject = interact.gameObject.AddComponent<Rigidbody>();
             rigidGameObject.useGravity = false;
 
             float initialAngle = 0;
-            var currentTorque = Vector3.up * (inputTransform.eulerAngles.y - initialAngle) * 10;
+            var currentTorque = Vector3.up * (interact.transform.eulerAngles.y - initialAngle) * 10;
 
-            debugText.text = string.Format("DEBUG: Flick Torque = {0}", currentTorque);
+            //debugText.text = string.Format("DEBUG: Flick Torque = {0}", currentTorque);
 
-            rigidbody.AddTorque(currentTorque);
-            initialAngle = mainCamera.eulerAngles.y;
+            interact.gameObject.GetComponent<Rigidbody>().AddTorque(currentTorque);
+            initialAngle = interact.mainCamera.eulerAngles.y;
         }
 
-        static void ScaleByController() {
+        static void ScaleByController(Transform inputTransform) {
             //
         }
-        static void ScaleByHand() {
+        static void ScaleByHand(Transform inputTransform) {
             //
         }
-        static void ScaleByNonSpatial() {
+        static void ScaleByNonSpatial(Interactable interact) {
             //
         }
-        static void ScaleByPointer() {
-            Scale();
+        static void ScaleByPointer(Interactable interact) {
+            Scale(interact);
         }
 
-        static void Scale() {
-            Vector3 currentHeadVector = mainCamera.forward;
-            var cross = Vector3.Cross(initialHeadVector, currentHeadVector);
-            var currentAngle = Vector3.Angle(initialHeadVector, currentHeadVector);
+        static void Scale(Interactable interact) {
+            Vector3 currentHeadVector = interact.mainCamera.forward;
+            var cross = Vector3.Cross(interact.initialHeadVector, currentHeadVector);
+            var currentAngle = Vector3.Angle(interact.initialHeadVector, currentHeadVector);
             float scale = currentAngle / 30;
 
             if (cross.y < -0.5) {
-                dataText.text = string.Format("DEBUG: Mostly Left| Angle = {0}", currentAngle);
+                //interact.dataText.text = string.Format("DEBUG: Mostly Left| Angle = {0}", currentAngle);
             } else if (cross.y > 0.5) {
-                dataText.text = string.Format("DEBUG: Mostly Right| Angle = {0}", currentAngle);
+                //interact.dataText.text = string.Format("DEBUG: Mostly Right| Angle = {0}", currentAngle);
             }
-            transform.localScale = new Vector3(scale, scale, scale);
+            interact.transform.localScale = new Vector3(scale, scale, scale);
         }
 
-        static void TranslateByController() {
+        static void TranslateByController(Interactable interact) {
             //
         }
-        static void TranslateByHand() {
+        static void TranslateByHand(Interactable interact) {
             //
         }
-        static void TranslateByNonSpatial() {
+        static void TranslateByNonSpatial(Interactable interact) {
             //
         }
-        static void TranslateByPointer() {
+        static void TranslateByPointer(Interactable interact) {
             //
         }
     }
