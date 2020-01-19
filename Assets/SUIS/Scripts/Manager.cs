@@ -7,9 +7,60 @@ namespace SUIS {
     /// should be used at any given frame based on "staring".</summary>
     ///
     public class Manager : MonoBehaviour {
+        private Transform mainCamera;
+        private Material initialMaterial;
+        private Transform currentSelection;
+
+        [SerializeField] public Material highlightMaterial;
+
+
+        public float lockTime = 5.0f;
+        public float runningTime = 0f;
         void Start() {
+            Vector3 mainCameraTransform = mainCamera;
         }
+
         void Update() {
+            var hit = RaycastHit;
+
+            if (currentSelection != null) {
+
+            }
+
+            if(
+                Physics.Raycast(
+                    mainCameraTransform.position,
+                    mainCameraTransform.forward,
+                    hit,
+                    500
+                ) == true
+            ) {
+                runningTime += Time.deltaTime * 1;
+
+                if (runningTime > lockTime) {
+                    Select(hit.transform);
+                    // perform action
+                    Reset();
+                }
+            } else {
+                Reset();
+            }
         }
+
+        void Select(Transform toSelect) {
+            currentSelection = toSelect;
+            var selectionRenderer = currentSelection.GetComponent<Renderer>();
+            if (selectionRenderer != null) {
+                selectionRenderer.material = highlightMaterial;
+            }
+        }
+
+        void Reset() {
+            currentSelection = null;
+            var selectionRenderer = currentSelection.GetComponent<Renderer>();
+            selectionRenderer.material = initialMaterial;
+            runningTime = 0f;
+        }
+
     }
 }
