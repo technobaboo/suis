@@ -7,14 +7,15 @@ namespace SUIS {
     public enum InputType {
         Controller,
         Hand,
-        Head,
+        NonSpatial,
         Pointer
     }
 
     public enum ActionType
     {
+        Flick,
         Scale,
-        Translate,
+        Translate
 
     }
 

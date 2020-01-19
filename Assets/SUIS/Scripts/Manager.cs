@@ -3,19 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace SUIS {
-    public class Adapter : MonoBehaviour {
-        private Camera camera;
+    public class Manager : MonoBehaviour {
         public InputType inputType;
         public ActionType actionType;
-
         void Start() {
-            camera = Camera.main;
+            // Start is called before the first frame update
         }
-
         void Update() {
-            if (inputType == InputType.Pointer) {
-                //HeadTransformer.handleAction(actionType);
-            }
+            // Update is called once per frame
         }
     }
 }
