@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,38 +16,38 @@ namespace SUIS {
 
         private TextMesh debugText;
 
-        var FlickMap = new Dictionary<InputType, Action>() {
-            { Controller, () => FlickByController() },
-            { Hand, () => FlickByHand() },
-            { NonSpatial, () => FlickByNonSpatial() },
-            { Pointer, () => FlickByPointer() }
+        Dictionary<InputType, Action> FlickMap = new Dictionary<InputType, Action>() {
+            { InputType.Controller, () => FlickByController() },
+            { InputType.Hand, () => FlickByHand() },
+            { InputType.NonSpatial, () => FlickByNonSpatial() },
+            { InputType.Pointer, () => FlickByPointer() }
         };
 
-        var ScaleMap = new Dictionary<InputType, Action>() {
-            { Controller, () => ScaleByController() },
-            { Hand, () => ScaleByHand() },
-            { NonSpatial, () => ScaleByNonSpatial() },
-            { Pointer, () => ScaleByPointer() }
+        Dictionary<InputType, Action> ScaleMap = new Dictionary<InputType, Action>() {
+            { InputType.Controller, () => ScaleByController() },
+            { InputType.Hand, () => ScaleByHand() },
+            { InputType.NonSpatial, () => ScaleByNonSpatial() },
+            { InputType.Pointer, () => ScaleByPointer() }
         };
 
-        var TranslateMap = new Dictionary<InputType, Action>() {
-            { Controller, () => TranslateByController() },
-            { Hand, () => TranslateByHand() },
-            { NonSpatial, () => TranslateByNonSpatial() },
-            { Pointer, () => TranslateByPointer() }
+        Dictionary<InputType, Action> TranslateMap = new Dictionary<InputType, Action>() {
+            { InputType.Controller, () => TranslateByController() },
+            { InputType.Hand, () => TranslateByHand() },
+            { InputType.NonSpatial, () => TranslateByNonSpatial() },
+            { InputType.Pointer, () => TranslateByPointer() }
         };
 
         void Start() {
             Vector3 initialHeadVector = mainCamera.forward;
         }
         void Update() {
-            if (actionType == Flick) {
+            if (actionType == ActionType.Flick) {
                 // TODO: Check if input type is available
                 // if not, use the fallback
                 FlickMap[inputType]();
-            } else if (actionType == Scale) {
+            } else if (actionType == ActionType.Scale) {
                 ScaleMap[inputType]();
-            } else if (actionType == Translate) {
+            } else if (actionType == ActionType.Translate) {
                 TranslateMap[inputType]();
             }
         }
