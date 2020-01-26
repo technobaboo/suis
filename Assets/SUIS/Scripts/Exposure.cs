@@ -12,7 +12,7 @@ public class Exposure : MonoBehaviour {
     public float activationExposure = 100.0f;
     public float radius = 0.1f;
     public SUIS.SDF sdf;
-    public Material material;
+	Renderer renderer;
     public Color startColor;
     public Color endColor;
     public UnityEvent OnExposedStart;
@@ -21,7 +21,12 @@ public class Exposure : MonoBehaviour {
     public bool isExposed = false;
     private bool wasExposed = false;
 
-    private void Update() {
+	private void Awake()
+	{
+		renderer = GetComponent<Renderer>();
+	}
+
+	private void Update() {
         float minDist = Mathf.Infinity;
         Vector3 stepPoint = pointer.position;
 
@@ -50,7 +55,7 @@ public class Exposure : MonoBehaviour {
         }
 
         wasExposed = isExposed;
-        material.color = Color.Lerp(startColor, endColor, exposure / activationExposure);
+        renderer.material.color = Color.Lerp(startColor, endColor, exposure / activationExposure);
     }
 
     private void OnDrawGizmosSelected() {
