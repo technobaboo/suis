@@ -1,44 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace SUIS {
-
-    public enum InputType {
-        Controller,
-        Hand,
-        NonSpatial,
-        Pointer
-    }
-
-    public enum ActionType
+    [Flags]
+    public enum InputType
     {
-        Flick,
-        Scale,
-        Translate
-    }
-
-    public enum ControllerFeatures {
-        ActionButtons,
-        Joystick,
-        Trackpad,
-        MenuButton,
-        HomeButton,
-        AnalogTrigger,
-        DigitalTrigger,
-        AnalogGrip,
-        DigitalGrip
-    }
-
-    public enum DigitalControllerButtons {
-        A,
-        B,
-        X,
-        Y,
-        Trigger,
-        Grip,
-        Menu,
-        Home
+        None = 0,
+        Global = 1,
+        Controller = 2,
+        Pointer = 4,
+        Hand = 8
     }
 
 }

@@ -61,3 +61,19 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+#Libraries
+Assets/LeapMotion/
+
+Assets/SteamVR/Extras/
+
+Assets/SteamVR/Icon/
+
+Assets/SteamVR/
+
+Assets/StreamingAssets/
+
+Assets/SteamVR_Input/
+
+Assets/SteamVR_Resources/Resources/
+
+Assets/LeapMotion.meta

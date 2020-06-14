@@ -11,7 +11,7 @@ public class Exposure : MonoBehaviour {
     public float exposureSpeed = 10.0f;
     public float activationExposure = 100.0f;
     public float radius = 0.1f;
-    public SUIS.SDF sdf;
+    public SUIS.Field field;
     public Material material;
     public Color startColor;
     public Color endColor;
@@ -26,7 +26,7 @@ public class Exposure : MonoBehaviour {
         Vector3 stepPoint = pointer.position;
 
         for (int i = 0; i < maxSteps; ++i) {
-            float dist = sdf.distance(stepPoint);
+            float dist = field.distance(stepPoint);
             if(dist < minDist) {
                 minDist = dist;
             }

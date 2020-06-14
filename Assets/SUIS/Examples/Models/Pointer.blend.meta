@@ -1,16 +1,14 @@
 fileFormatVersion: 2
-guid: 00e000df3a1436b448f6f209f8a7a3ca
+guid: d0c47979b87b9b2439b3bcb9efc338ee
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
-    100002: whole_model_group1
     400000: //RootNode
-    400002: whole_model_group1
-    2100000: whole_model_group1Mat
-    2300000: whole_model_group1
-    3300000: whole_model_group1
-    4300000: whole_model_group1
+    2100000: PointerMat
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Circle
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -39,7 +37,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 0
+    isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1
@@ -73,7 +71,7 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
