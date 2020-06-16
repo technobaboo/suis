@@ -22,11 +22,11 @@ namespace SUIS
 
         #endregion
 
-        //Inputs
-        private List<Input> inputs = new List<Input>();
+        //Input Methods
+        private List<InputMethod> inputMethods = new List<InputMethod>();
 
         private struct InputHandlerLink {
-            public Input input;
+            public InputMethod inputMethod;
             public float distance;
             public InputHandler handler;
         }
@@ -48,33 +48,31 @@ namespace SUIS
             }
 
             foreach(InputDevice device in devices) {
-                inputs.AddRange(device.Inputs);
+                inputMethods.AddRange(device.InputMethods);
             }
         }
 
         private void FixedUpdate() {
             //Refresh the rejection of actions
-            foreach (Input input in inputs)
-                input.rejectAction = false;
+            foreach (InputMethod inputMethod in inputMethods)
+                inputMethod.rejectAction = false;
             foreach (InputHandler handler in handlers)
                 handler.rejectAction = false;
 
             //Create representations of input interaction with input handlers
-            float maxDistance = 0.0f;
             List<InputHandlerLink> distanceLinks = new List<InputHandlerLink>();
             foreach (InputHandler handler in handlers) {
-                maxDistance = Mathf.Max(maxDistance, handler.maxDistance);
-                foreach (Input input in inputs) {
-                    if (!input.isTracked || !input.enabled)
+                foreach (InputMethod inputMethod in inputMethods) {
+                    if (!inputMethod.isTracked || !inputMethod.enabled)
                         continue;
                     InputHandlerLink link = new InputHandlerLink();
-                    link.input = input;
+                    link.inputMethod = inputMethod;
                     link.handler = handler;
 
-                    if (input.Type == InputType.Global)
-                        link.distance = handler.maxDistance - 0.001f;
+                    if (inputMethod.Type == InputType.Global)
+                        link.distance = Mathf.Infinity;
                     else
-                        link.distance = input.distanceToField(handler.field);
+                        link.distance = inputMethod.distanceToField(handler.field);
 
                     distanceLinks.Add(link);
                 }
@@ -85,7 +83,7 @@ namespace SUIS
             {
                 bool linkValid = false;
                 InputHandlerLink linkToProcess = new InputHandlerLink();
-                float minDistance = maxDistance;
+                float minDistance = Mathf.Infinity;
 
                 //Look for next link to process
                 for (int j = distanceLinks.Count - 1; j > -1; --j)
@@ -102,10 +100,10 @@ namespace SUIS
 
                 Debug.Log(linkToProcess);
 
-                if (linkValid && !linkToProcess.input.rejectAction && !linkToProcess.handler.rejectAction) {
+                if (linkValid && !linkToProcess.inputMethod.rejectAction && !linkToProcess.handler.rejectAction) {
                     List<ActionTrigger> actionTriggers = linkToProcess.handler.ActionTriggers;
                     foreach (ActionTrigger actionTrigger in actionTriggers) {
-                        actionTrigger.testAction(linkToProcess.input, linkToProcess.distance, linkToProcess.handler);
+                        actionTrigger.testAction(linkToProcess.inputMethod, linkToProcess.distance, linkToProcess.handler);
                     }
                 }
             }

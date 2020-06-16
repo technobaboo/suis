@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d76aeb120e21874482e20e5ca324f92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputs: []
+  inputMethods: []
   autoAddChildrenOnAwake: 1
 --- !u!1 &629507311 stripped
 GameObject:
@@ -489,7 +489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d76aeb120e21874482e20e5ca324f92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputs: []
+  inputMethods: []
   autoAddChildrenOnAwake: 1
 --- !u!1 &1670213619
 GameObject:
@@ -529,7 +529,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1670213619}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.0302, y: 0.035, z: 0.2605}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -733,6 +733,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rejectAction: 0
   field: {fileID: 1700779033}
-  maxDistance: 10000000
-  actionTriggers:
-  - {fileID: 1700779032}
+  actionTriggers: []

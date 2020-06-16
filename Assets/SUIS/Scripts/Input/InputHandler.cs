@@ -10,7 +10,6 @@ namespace SUIS
         public bool rejectAction = false;
 
         public Field field;
-        public float maxDistance = 1.0f;
         
         [SerializeField]
         private List<ActionTrigger> actionTriggers;

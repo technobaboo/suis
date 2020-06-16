@@ -24,7 +24,7 @@ public class ColorByDistance : MonoBehaviour
         return (NewValue);
     }
 
-    public void UpdateColor(SUIS.Input input, float distance, InputHandler handler) {
+    public void UpdateColor(InputMethod inputMethod, float distance, InputHandler handler) {
         UpdateColor(distance);
     }
 

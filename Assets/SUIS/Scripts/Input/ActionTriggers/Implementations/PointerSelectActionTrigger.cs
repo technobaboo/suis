@@ -4,16 +4,19 @@ using SUIS;
 using UnityEngine;
 
 
-public class PointerSelectActionTrigger : SUIS.PointerActionTrigger
+public class PointerSelectActionTrigger : ActionTrigger
 {
     public float hoverRadius = 0.0f;
 
-    protected override bool isPerformingAction(PointerInput input, float distance, InputHandler handler)
-    {
-        bool performingAction = input.inputs0d.ContainsKey("select") && input.inputs0d["select"];
+    protected override bool isPerformingAction(InputMethod inputMethod, float distance, InputHandler handler) {
+        if (inputMethod.Type != InputType.Pointer)
+            return false;
+        PointerInput pointer = inputMethod as PointerInput;
+
+        bool performingAction = pointer.Actions0D.ContainsKey("select") && pointer.Actions0D["select"];
         if (performingAction)
         {
-            input.rejectAction = true;
+            pointer.rejectAction = true;
             handler.rejectAction = true;
         }
         

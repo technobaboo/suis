@@ -4,7 +4,7 @@ using SUIS;
 using UnityEngine;
 
 
-public class HoverActionTrigger : SUIS.ActionTrigger
+public class HoverActionTrigger : ActionTrigger
 {
     public float hoverRadius = 0.0f;
 
@@ -12,7 +12,7 @@ public class HoverActionTrigger : SUIS.ActionTrigger
         type = InputType.Global | InputType.Controller | InputType.Pointer | InputType.Hand;
     }
 
-    protected override bool isPerformingAction(SUIS.Input input, float distance, InputHandler handler) {
+    protected override bool isPerformingAction(InputMethod inputMethod, float distance, InputHandler handler) {
         return distance <= hoverRadius;
     }
 }

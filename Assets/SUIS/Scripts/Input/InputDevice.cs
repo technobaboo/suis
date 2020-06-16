@@ -7,30 +7,30 @@ namespace SUIS
     public class InputDevice : MonoBehaviour
     {
         [SerializeField]
-        private List<Input> inputs = new List<Input>();
-        public List<Input> Inputs { get { return inputs; } }
+        private List<InputMethod> inputMethods = new List<InputMethod>();
+        public List<InputMethod> InputMethods { get { return inputMethods; } }
 
         public bool autoAddChildrenOnAwake = false;
 
         private void Start() {
             if(autoAddChildrenOnAwake) {
                 for(int i=0; i<transform.childCount; ++i) {
-                    Input input = transform.GetChild(i).GetComponent<Input>();
-                    if (input != null)
-                        AddInput(input);
+                    InputMethod inputMethod = transform.GetChild(i).GetComponent<InputMethod>();
+                    if (inputMethod != null)
+                        AddInputMethod(inputMethod);
                 }
             }
         }
 
-        public void AddInput(Input input) {
-            if (!inputs.Contains(input)) {
-                input.device = this;
-                inputs.Add(input);
+        public void AddInputMethod(InputMethod inputMethod) {
+            if (!inputMethods.Contains(inputMethod)) {
+                inputMethod.device = this;
+                inputMethods.Add(inputMethod);
             }
         }
-        public void RemoveInput(Input input) {
-            if (inputs.Contains(input))
-                inputs.Remove(input);
+        public void RemoveInput(InputMethod inputMethod) {
+            if (inputMethods.Contains(inputMethod))
+                inputMethods.Remove(inputMethod);
         }
     }
 }

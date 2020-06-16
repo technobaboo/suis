@@ -6,5 +6,5 @@ using UnityEngine.Events;
 namespace SUIS
 {
     [System.Serializable]
-    public class ActionEvent : UnityEvent<Input, float, InputHandler> {}
+    public class ActionEvent : UnityEvent<InputMethod, float, InputHandler> {}
 }
